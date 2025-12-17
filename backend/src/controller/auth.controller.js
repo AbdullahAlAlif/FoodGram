@@ -76,7 +76,7 @@ async function registerFoodPartner(req, res) {
     }
     const hashedPassword = await bcrypt.hash(password, 10);
     const foodPartner = await foodPartnerModel.create({ name, email, password: hashedPassword });
-    const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+    const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET, { expiresIn: '1d' }); //id: foodPartner._id   so the token and decoded token will have id field not _id thats in the db (or when we query from db)
     res.cookie('token', token, { httpOnly: true });
     res.status(201).json({
       message: "Food partner registered successfully",
