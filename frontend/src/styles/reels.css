@@ -65,7 +65,7 @@
   padding-bottom: calc(env(safe-area-inset-bottom, 0) + 72px); /* make space for bottom nav */
   display: flex;
   flex-direction: column;
-  padding-right: 4.5rem;
+  padding-right: 4.5rem; 
   gap: var(--space-4);
   pointer-events: auto; /* enable button click */
 }
@@ -103,7 +103,7 @@
 
 /* Desktop tweaks */
 @media (min-width: 768px) {
-  .reel-content { padding: 36px; }
+  /*.reel-content { padding: 36px; }*/
   .reel-description { font-size: 1.05rem; max-width: 70ch; }
 }
 

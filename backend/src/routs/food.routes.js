@@ -14,5 +14,12 @@ router.post('/', authMiddleware.authFoodPartnerMiddleware, upload.single('video'
 //for normal users so GET /api/food/ 
 router.get('/', authMiddleware.authUserMiddleware, foodController.getFoodItems); // both user and food partner can access this due to controller logic
 
+//like food item - POST /api/food/like (protected)
+router.post('/like', authMiddleware.authUserMiddleware, foodController.likeFoodItem);
 
+//save food item - POST /api/food/save (protected)
+router.post('/save',authMiddleware.authUserMiddleware,foodController.saveFoodItem)
+
+
+router.get('/save',authMiddleware.authUserMiddleware,foodController.getSavedFoodItems)
 module.exports = router;

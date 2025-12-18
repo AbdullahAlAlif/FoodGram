@@ -8,7 +8,7 @@ const Home = () => {
     // Autoplay behavior is handled inside ReelFeed
 
     useEffect(() => {
-        axios.get("http://localhost:3000/api/food", { withCredentials: true })
+        axios.get("http://localhost:3000/api/food", { withCredentials: true }) // Fetch all food items at the start and at every render
             .then(response => {
 
                 console.log(response.data);
@@ -22,8 +22,8 @@ const Home = () => {
 
     async function likeVideo(item) {
 
-        const response = await axios.post("http://localhost:3000/api/food/like", { foodId: item._id }, {withCredentials: true})
-
+        const response = await axios.post("http://localhost:3000/api/food/like", { foodId: item._id }, {withCredentials: true}) //like or unlike food item
+        //at the same time updating like count in frontend
         if(response.data.like){
             console.log("Video liked");
             setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, likeCount: v.likeCount + 1 } : v))
@@ -33,7 +33,7 @@ const Home = () => {
         }
         
     }
-
+    //same as likeVideo function
     async function saveVideo(item) {
         const response = await axios.post("http://localhost:3000/api/food/save", { foodId: item._id }, { withCredentials: true })
         
