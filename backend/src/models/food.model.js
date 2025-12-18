@@ -8,7 +8,7 @@ const foodSchema = new mongoose.Schema({
   //category: { type: String, required: true },
   likeCount: { type: Number, default: 0 },
   savesCount: { type: Number, default: 0 },
-  commentsCount: { type: Number, default: 0 },
+  //commentsCount: { type: Number, default: 0 },
   foodPartner: { type: mongoose.Schema.Types.ObjectId, ref: 'foodpartner', required: true },
 }, { timestamps: true });
 

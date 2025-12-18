@@ -22,6 +22,19 @@ const Saved = () => {
             })
     }, [])
 
+    //same as in home.jsx
+    async function likeVideo(item) {
+    
+            const response = await api.post("/food/like", { foodId: item._id }) 
+            if(response.data.like){
+                console.log("Video liked");
+                setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, likeCount: v.likeCount + 1 } : v))
+            }else{
+                console.log("Video unliked");
+                setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, likeCount: v.likeCount - 1 } : v))
+            }
+            
+        }
     const removeSaved = async (item) => {
         try {
             await api.post("/food/save", { foodId: item._id })
@@ -34,6 +47,7 @@ const Saved = () => {
     return (
         <ReelFeed
             items={videos}
+            onLike={likeVideo}
             onSave={removeSaved}
             emptyMessage="No saved videos yet."
         />
