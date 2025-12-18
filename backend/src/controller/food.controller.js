@@ -28,7 +28,7 @@ async function createFoodItem(req, res) {
 // get food items
 async function getFoodItems(req, res) {  //btw since we didn't use req.user the route will actually work for both user and food partner (we can remove middleware if we want but we keep it so that only logged in users can access food items (token verify - and user and food partner both have token after login and all middleware verify it)) 
     try {
-        const foodItems = await foodModel.find({ });w
+        const foodItems = await foodModel.find({});
         res.status(200).json({ 
             message: "Food items fetched successfully",
             foodItems });
