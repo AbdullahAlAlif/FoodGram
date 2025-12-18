@@ -59,9 +59,8 @@ const CreateFood = () => {
         const response = await api.post("/food", formData);
 
         console.log(response.data);
-        navigate("/"); // Redirect to home or another page after successful creation
-        // Optionally reset
-        // setName(''); setDescription(''); setVideoFile(null);
+        navigate("/"); 
+        
     };
 
     const isDisabled = useMemo(() => !name.trim() || !videoFile, [ name, videoFile ]);

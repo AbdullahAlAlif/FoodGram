@@ -2,8 +2,6 @@ const userModel = require('../models/user.model');
 const foodPartnerModel = require('../models/foodpartner.model');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-// const dotenv = require('dotenv');
-// dotenv.config();
 
 
 //controller for user registration and login

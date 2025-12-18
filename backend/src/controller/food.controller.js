@@ -4,20 +4,11 @@ const { v4: uuid } = require('uuid');
 const likesModel = require('../models/likes.model');
 const saveModel = require('../models/save.model');
 
-// Create a new food item
+
 async function createFoodItem(req, res) {
-
-    //res.send("Food Item Created");
-    //console.log(req.foodPartner);
-    //console.log(req.body); // is undefined due to file format (video) for which we use multer
-    //console.log(req.file); // multer adds file info to req.file object
-    //using  uuid for unique name
-    const fileUploadResult = await storageServices.uploadFile(req.file.buffer, uuid());
-    //console.log(fileUploadResult); // useful url and fileId
-
-    //name, description, video => provided by frontend
-    //foodPartner => we get from auth middleware (req.foodPartner)
+   
     try {
+        const fileUploadResult = await storageServices.uploadFile(req.file.buffer, uuid());
         const foodPartner = req.foodPartner._id;
         const foodItem = new foodModel({ name: req.body.name, description: req.body.description, video: fileUploadResult.url, foodPartner });
         await foodItem.save();
@@ -27,8 +18,8 @@ async function createFoodItem(req, res) {
     }
 }
 
-// get food items
-async function getFoodItems(req, res) {  //btw since we didn't use req.user the route will actually work for both user and food partner (we can remove middleware if we want but we keep it so that only logged in users can access food items (token verify - and user and food partner both have token after login and all middleware verify it)) 
+
+async function getFoodItems(req, res) {  
     try {
         const foodItems = await foodModel.find({});
         res.status(200).json({ 
@@ -39,13 +30,13 @@ async function getFoodItems(req, res) {  //btw since we didn't use req.user the 
     }
 }
 
-// like food item
+
 async function likeFoodItem(req, res) {
     try {
         const userId = req.user._id;
         const foodId = req.body.foodId;
 
-        // Check if the food item already exists then unlike
+        
         const existingLike = await likesModel.findOne({ user: userId, food: foodId });
         if (existingLike) {
             await likesModel.deleteOne({ _id: existingLike._id });
@@ -55,7 +46,7 @@ async function likeFoodItem(req, res) {
             return res.status(200).json({ message: "Food unlike successfully" });
         }
 
-        // Create a new like
+       
         const like = await likesModel.create({ user: userId, food: foodId });
 
         await foodModel.findByIdAndUpdate(foodId, { $inc: { likeCount: 1 } });
@@ -67,7 +58,7 @@ async function likeFoodItem(req, res) {
     }
 }
 
-// save food item
+
 async function saveFoodItem(req, res) {
 
     const { foodId } = req.body;

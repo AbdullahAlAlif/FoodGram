@@ -1,11 +1,5 @@
 const ImageKit = require("imagekit");
-// Read ImageKit configuration from environment variables.
-// const imageKit = new ImageKit({
-//   publicKey: process.env.IMAGEKIT_PUBLIC_KEY,
-//   privateKey: process.env.IMAGEKIT_PRIVATE_KEY,
-//   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT,
-// });
-
+require('dotenv').config();
 
 
 const { IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, IMAGEKIT_URL_ENDPOINT } = process.env;
@@ -20,7 +14,6 @@ if (IMAGEKIT_PUBLIC_KEY && IMAGEKIT_PRIVATE_KEY && IMAGEKIT_URL_ENDPOINT) {
 } else {
     console.warn("ImageKit not configured: set IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, IMAGEKIT_URL_ENDPOINT");
 }
-
 async function uploadFile(file, fileName) {
   if (!imagekit) {
     throw new Error(
@@ -28,7 +21,7 @@ async function uploadFile(file, fileName) {
     );
   }
 
-  const result = await imagekit.upload({ // <-- use lowercase imagekit
+  const result = await imageKit.upload({
     file: file,
     fileName: fileName,
   });

@@ -11,7 +11,7 @@ async function authFoodPartnerMiddleware(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.foodPartner = await foodPartnerModel.findById(decoded.id); //attach food partner info to req object so that controller can use it
+        req.foodPartner = await foodPartnerModel.findById(decoded.id); 
         next();
     } catch (error) {
         return res.status(401).json({ message: "Unauthorized: Invalid token" });
@@ -26,7 +26,7 @@ async function authUserMiddleware(req, res, next) {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = await userModel.findById(decoded.id); //attach user info to req object so that controller can use it
+        req.user = await userModel.findById(decoded.id); 
         next();
     } catch (error) {
         return res.status(401).json({ message: "Unauthorized: Invalid token" });

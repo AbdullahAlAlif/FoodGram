@@ -10,12 +10,7 @@ import Profile from '../pages/food-partner/Profile';
 import Saved from '../pages/general/Saved';
 import BottomNav from '../components/BottomNav';
 
-/*
-user/register => user register form
-					user/login => user login form
-					food-partner/register => food partner register form
-					food-partner/login => food partner login form
-*/
+
 const AppRoutes = () => {
   return (
     <Router>

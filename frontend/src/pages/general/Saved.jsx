@@ -22,7 +22,7 @@ const Saved = () => {
             })
     }, [])
 
-    //same as in home.jsx
+   
     async function likeVideo(item) {
     
             const response = await api.post("/food/like", { foodId: item._id }) 

@@ -51,9 +51,7 @@ const Profile = () => {
             <section className="profile-grid" aria-label="Videos">
                 {videos.map((v) => (
                     <div key={v.id} className="profile-grid-item">
-                        {/* Placeholder tile; replace with <video> or <img> as needed */}
-
-
+                       
                         <video
                             className="profile-grid-video"
                             style={{ objectFit: 'cover', width: '100%', height: '100%' }}

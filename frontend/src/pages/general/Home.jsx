@@ -5,10 +5,10 @@ import ReelFeed from '../../components/ReelFeed'
 
 const Home = () => {
     const [ videos, setVideos ] = useState([])
-    // Autoplay behavior is handled inside ReelFeed
+    
 
     useEffect(() => {
-        api.get("/food", { withCredentials: true }) // Fetch all food items at the start and at every render
+        api.get("/food", { withCredentials: true }) 
             .then(response => {
 
                 console.log(response.data);
@@ -18,12 +18,11 @@ const Home = () => {
             .catch(() => { /* noop: optionally handle error */ })
     }, [])
 
-    // Using local refs within ReelFeed; keeping map here for dependency parity if needed
 
     async function likeVideo(item) {
 
-        const response = await api.post("/food/like", { foodId: item._id }) //like or unlike food item
-        //at the same time updating like count in frontend
+        const response = await api.post("/food/like", { foodId: item._id }) 
+        
         if(response.data.like){
             console.log("Video liked");
             setVideos((prev) => prev.map((v) => v._id === item._id ? { ...v, likeCount: v.likeCount + 1 } : v))
