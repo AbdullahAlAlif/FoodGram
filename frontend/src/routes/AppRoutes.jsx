@@ -7,6 +7,7 @@ import FoodPartnerLogin from '../pages/auth/FoodPartnerLogin';
 import Home from '../pages/general/Home';
 import CreateFood from '../pages/food-partner/CreateFood';
 import Profile from '../pages/food-partner/Profile';
+
 /*
 user/register => user register form
 					user/login => user login form

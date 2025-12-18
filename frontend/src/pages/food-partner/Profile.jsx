@@ -36,12 +36,12 @@ const Profile = () => {
 
                 <div className="profile-stats" role="list" aria-label="Stats">
                     <div className="profile-stat" role="listitem">
-                        <span className="profile-stat-label">total meals</span>
-                        <span className="profile-stat-value">{profile?.totalMeals}</span>
+                        <span className="profile-stat-label">E-mail</span>
+                        <span className="profile-pill">{profile?.email}</span>
                     </div>
                     <div className="profile-stat" role="listitem">
-                        <span className="profile-stat-label">customer served</span>
-                        <span className="profile-stat-value">{profile?.customersServed}</span>
+                        <span className="profile-stat-label">Phone</span>
+                        <span className="profile-pill">{profile?.phone}</span>
                     </div>
                 </div>
             </section>
