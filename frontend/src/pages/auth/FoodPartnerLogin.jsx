@@ -1,7 +1,8 @@
 import React from 'react';
 import '../../styles/auth-shared.css';
-import axios from 'axios';
+//import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../../services/api';
 
 const FoodPartnerLogin = () => {
 
@@ -13,10 +14,15 @@ const FoodPartnerLogin = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const response = await axios.post("http://localhost:3000/api/auth/food-partner/login", {
+    
+    // const response = await axios.post("http://localhost:3000/api/auth/food-partner/login", {
+    //   email,
+    //   password
+    // }, { withCredentials: true });
+    const response = await api.post("/auth/food-partner/login", {
       email,
       password
-    }, { withCredentials: true });
+    });
 
     console.log(response.data);
 
