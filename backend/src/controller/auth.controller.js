@@ -69,13 +69,13 @@ async function logoutUser(req, res) {
 //controller for food partner registration and login
 async function registerFoodPartner(req, res) {
   try {
-    const { name, email, password } = req.body;
+    const { name, contactName, address, phone, email, password } = req.body;
     const isFoodPartnerExists = await foodPartnerModel.findOne({ email });
     if (isFoodPartnerExists) {
       return res.status(400).json({ message: "Food partner account already exists" });
     }
     const hashedPassword = await bcrypt.hash(password, 10);
-    const foodPartner = await foodPartnerModel.create({ name, email, password: hashedPassword });
+    const foodPartner = await foodPartnerModel.create({ name, email, password: hashedPassword, contactName, address, phone });
     const token = jwt.sign({ id: foodPartner._id }, process.env.JWT_SECRET, { expiresIn: '1d' }); //id: foodPartner._id   so the token and decoded token will have id field not _id thats in the db (or when we query from db)
     res.cookie('token', token, { httpOnly: true });
     res.status(201).json({
@@ -83,7 +83,10 @@ async function registerFoodPartner(req, res) {
       foodPartner: {
         id: foodPartner._id,
         name: foodPartner.name,
-        email: foodPartner.email
+        email: foodPartner.email,
+        contactName: foodPartner.contactName,
+        address: foodPartner.address,
+        phone: foodPartner.phone
       }
     });
   } catch (error) {
