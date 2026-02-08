@@ -2,6 +2,8 @@
 
 A reel-based food platform built with the MERN stack. Food partners (chains, restaurants, vendors) can post short demo reels of their food items; users can view, like, save, follow partners, and learn more from partner profiles.
 
+![Reel View](./pic.png)
+
 ## Features
 - Short-form video reels (upload, encode, thumbnails)
 - Partner profiles (menus, location, contact, reels)
